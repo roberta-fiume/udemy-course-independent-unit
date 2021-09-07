@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-cockpit',
@@ -8,26 +8,45 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 export class CockpitComponent implements OnInit {
   @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
   @Output('bpCreated') blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
-  newServerName = '';
-  newServerContent = '';
+
+  // newServerName = '';
+  // newServerContent = '';
+
+  @ViewChild('serverContentInput') serverContentInput: ElementRef;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onAddServer() {
-    this.serverCreated.emit({
-      serverName: this.newServerName,
-      serverContent: this.newServerContent
-    })
+  onAddServer(nameInput: HTMLInputElement) { //nameInput is the parameter for the reference #serverNameInput passed as argument in the template file
+    console.log("server content input ",this.serverContentInput);
+    // console.log("input value", nameInput.value);
+    // this.serverCreated.emit({
+    // serverName: this.newServerName,
+    //   serverName: nameInput.value,
+    //   serverContent: this.newServerContent
+    // })
+
+      this.serverCreated.emit({
+      serverName: nameInput.value,
+      serverContent: this.serverContentInput.nativeElement.value
+    });
   }
 
-  onAddBlueprint() {
-    this.blueprintCreated.emit({
-      serverName: this.newServerName,
-      serverContent: this.newServerContent
-    })
+  onAddBlueprint(nameInput: HTMLInputElement) {
+      console.log(this.serverContentInput);
+      // this.blueprintCreated.emit({
+      // serverName: this.newServerName,
+      // serverName: nameInput.value,
+      // serverContent: this.newServerContent
+      // })
+
+      this.blueprintCreated.emit({
+        // serverName: this.newServerName,
+        serverName: nameInput.value,
+        serverContent: this.serverContentInput.nativeElement.value
+      });
   }
 
 }
