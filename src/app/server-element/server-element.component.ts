@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./server-element.component.css']
 })
 export class ServerElementComponent implements OnInit {
-  @Input('srvElement') element: {type: string, name: string, content: string}; //send data through Input decorator that make the property accessible to the parent 
+  @Input() element: {type: string, name: string, content: string}; //send data through Input decorator that make the property accessible to the parent 
 
   @Input() passedToChild = "";
   constructor() { }
