@@ -10,7 +10,10 @@ import {
   AfterContentChecked,
   AfterViewInit,
   AfterViewChecked,
-  OnDestroy
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+  
 
 } from '@angular/core';
 
@@ -31,6 +34,7 @@ export class ServerElementComponent implements
   OnDestroy {
   @Input() element: {type: string, name: string, content: string}; //send data through Input decorator that make the property accessible to the parent 
   @Input() name: string;
+  @ViewChild('heading') header: ElementRef;
 
   @Input() passedToChild = "";
   constructor() { 
@@ -44,6 +48,7 @@ export class ServerElementComponent implements
 
   ngOnInit(): void {
     console.log('ngOnInit called!');
+    console.log("Text Content: ", this.header.nativeElement.textContent);
   }
 
   ngDoCheck() {
@@ -58,8 +63,11 @@ export class ServerElementComponent implements
     console.log('ngAfterContentChecked called'); //it's called after each change detaction cycle
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit() { //it gives you access to the template elements, you can access them and use their values. Before this hook
+    //has not been reached you can't do that, yu can't check the value of some elements in your dom because it's not been rendered yet.
+    //it's like the "mounted" in Vue
     console.log('ngAfterViewInit called');
+    console.log("Text Content: ", this.header.nativeElement.textContent);
   }
 
   ngAfterViewChecked() {
