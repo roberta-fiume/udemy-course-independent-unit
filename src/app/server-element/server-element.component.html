@@ -2,10 +2,10 @@
     class="panel panel-default">
     <div class="panel-heading">{{ element.name }}</div>
     <div class="panel-body">
-    <p>
-        <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
-        <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
-    </p>
-    <p> {{ passedToChild }}</p>
+        <ng-content></ng-content> 
+        <p> {{ passedToChild }}</p>
     </div>
 </div>
+ <!-- ng-content is like the slots for Vue, it's the same thing. When you want to pass something down to a child you just put the 
+content between the open and closed tags of the parent component, in this case we inserted a <p> element between the open and closed tag of
+    app-server-component and then inserted in server-element (the child) "ng-content" in the place that we want the content to display  -->

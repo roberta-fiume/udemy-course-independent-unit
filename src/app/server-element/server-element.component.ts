@@ -10,9 +10,12 @@ export class ServerElementComponent implements OnInit {
   @Input() element: {type: string, name: string, content: string}; //send data through Input decorator that make the property accessible to the parent 
 
   @Input() passedToChild = "";
-  constructor() { }
+  constructor() { 
+
+  }
 
   ngOnInit(): void {
+ 
   }
 
 }
