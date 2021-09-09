@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-
+import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,6 +6,7 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent {
   serverElements = [{type: 'server', name: 'Testserver', content: 'Just a test!'}];
+
   madeUpString = "I'm a string"
 
   onServerAdded(serverData: {serverName: string, serverContent: string}) {
@@ -17,7 +17,7 @@ export class AppComponent {
     });
   }
 
-  onBluePrintAdded(blueprintData: {serverName: string, serverContent: string}) {
+  onBlueprintAdded(blueprintData: {serverName: string, serverContent: string}) {
     this.serverElements.push({
       type: 'blueprint',
       name: blueprintData.serverName,
@@ -26,10 +26,13 @@ export class AppComponent {
   }
 
   onChangeFirst() {
-    this.serverElements[0].name = "Changed!";
+    this.serverElements[0].name = 'Changed!';
   }
 
   onDestroyFirst() {
     this.serverElements.splice(0, 1);
   }
 }
+
+
+

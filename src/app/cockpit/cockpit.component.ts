@@ -12,7 +12,7 @@ export class CockpitComponent implements OnInit {
   // newServerName = '';
   // newServerContent = '';
 
-  @ViewChild('serverContentInput') serverContentInput: ElementRef;
+  @ViewChild('serverContentInput', { static: false }) serverContentInput: ElementRef;
 
   constructor() { }
 
@@ -28,7 +28,7 @@ export class CockpitComponent implements OnInit {
     //   serverContent: this.newServerContent
     // })
 
-      this.serverCreated.emit({
+    this.serverCreated.emit({
       serverName: nameInput.value,
       serverContent: this.serverContentInput.nativeElement.value
     });
